@@ -169,7 +169,15 @@ section{padding:96px 0}
   -webkit-text-fill-color:#060a0e;
   flex-shrink:0;
   box-shadow:0 3px 12px rgba(0,212,170,0.4);
-  overflow:hidden; /* clips border-radius cleanly without cutting real logos */
+  overflow:hidden;
+}
+/* Default icon image (glassio_icon.png) used when no custom logo is set */
+.logo-icon-default{
+  width:34px;height:34px;
+  object-fit:contain;
+  flex-shrink:0;
+  border-radius:8px;
+  display:block;
 }
 /* Custom uploaded logo — replaces the letter box in nav/footer */
 .logo-img-custom{
@@ -832,6 +840,10 @@ footer{
   /* No background-clip on container — gradient is on .logo-name span */
   background:none;
   -webkit-text-fill-color:inherit;
+}
+/* Footer default icon size */
+.f-logo .logo-icon-default{
+  width:60px;height:60px;border-radius:14px;
 }
 /* Footer logo box: 2x the standard 30px size */
 .f-logo .logo-box{
@@ -1820,6 +1832,7 @@ img,video,iframe,svg{max-width:100%;height:auto}
   .nav-in{padding:0 20px}
   .logo{font-size:1.15rem}
   .logo-box{width:28px;height:28px;font-size:.82rem}
+  .logo-icon-default{width:28px;height:28px}
 
   /* ── Hero ── */
   #hero{
@@ -1988,6 +2001,7 @@ img,video,iframe,svg{max-width:100%;height:auto}
   .footer-g{grid-template-columns:1fr;gap:36px}
   .f-logo{font-size:1.75rem;gap:10px;margin-bottom:14px}
   .f-logo .logo-box{width:44px;height:44px;font-size:1.35rem;border-radius:10px;box-shadow:0 4px 14px rgba(0,212,170,0.4)}
+  .f-logo .logo-icon-default{width:44px;height:44px;border-radius:10px}
   .f-tag{max-width:100%;font-size:.86rem;line-height:1.65}
   .footer-bot{flex-direction:column;gap:10px;text-align:center}
   .footer-bot p,.footer-bot div{font-size:.78rem}
@@ -2029,6 +2043,7 @@ img,video,iframe,svg{max-width:100%;height:auto}
   footer{padding:42px 0 24px}
   .f-logo{font-size:1.55rem}
   .f-logo .logo-box{width:38px;height:38px;font-size:1.2rem}
+  .f-logo .logo-icon-default{width:38px;height:38px}
 }
 
 /* ── 390px ── Modern small phones (iPhone 14/15, Pixel) */
@@ -2071,6 +2086,7 @@ img,video,iframe,svg{max-width:100%;height:auto}
   footer{padding:38px 0 22px}
   .f-logo{font-size:1.4rem;gap:9px}
   .f-logo .logo-box{width:34px;height:34px;font-size:1.05rem;border-radius:9px}
+  .f-logo .logo-icon-default{width:34px;height:34px;border-radius:9px}
 
   .sbox{padding:13px}
   .sbox-n{font-size:1.35rem}
@@ -2107,6 +2123,7 @@ img,video,iframe,svg{max-width:100%;height:auto}
 
   .f-logo{font-size:1.25rem;gap:8px}
   .f-logo .logo-box{width:30px;height:30px;font-size:.92rem;border-radius:8px}
+  .f-logo .logo-icon-default{width:30px;height:30px;border-radius:8px}
 }
 </style>
 </head>
@@ -2116,8 +2133,8 @@ img,video,iframe,svg{max-width:100%;height:auto}
 <nav id="mainNav">
   <div class="nav-in">
     <a href="#" class="logo">
-      <div class="logo-box" id="nav-logo-box">G</div>
-      <img class="logo-img-custom" id="nav-logo-img" alt="Logo">
+      <img class="logo-icon-default" id="nav-logo-box" src="Assets/glassio_icon.png" alt="Glassio">
+      <img class="logo-img-custom" id="nav-logo-img" alt="Logo" onerror="this.style.display='none';document.getElementById('nav-logo-box').style.display='';">
       <span id="nav-logo-text" class="logo-name">Glassio</span>
     </a>
     <ul class="nav-links">
@@ -2981,7 +2998,7 @@ img,video,iframe,svg{max-width:100%;height:auto}
   <div class="container">
     <div class="footer-g">
       <div>
-        <div class="f-logo"><div class="logo-box" id="footer-logo-box">G</div><img class="logo-img-custom" id="footer-logo-img" alt="Logo"><span id="footer-logo-text" class="logo-name">Glassio</span></div>
+        <div class="f-logo"><img class="logo-icon-default" id="footer-logo-box" src="Assets/glassio_icon.png" alt="Glassio"><img class="logo-img-custom" id="footer-logo-img" alt="Logo" onerror="this.style.display='none';document.getElementById('footer-logo-box').style.display='';"><span id="footer-logo-text" class="logo-name">Glassio</span></div>
         <p class="f-tag">The premium Mac desktop application for inventory management, CSV workflows, and operational clarity.</p>
         <div class="f-social">
           <div class="fsoc" title="Twitter/X">
@@ -3168,7 +3185,7 @@ img,video,iframe,svg{max-width:100%;height:auto}
           <label class="ad-label">Current Logo Preview</label>
           <div class="logo-current-preview" id="logo-current-preview-wrap">
             <img id="logo-current-img" src="" alt="Current logo" style="display:none">
-            <span class="logo-preview-fallback" id="logo-preview-fallback">No logo selected — using text logo</span>
+            <img id="logo-preview-fallback" src="Assets/glassio_icon.png" alt="Default icon" style="height:52px;object-fit:contain;border-radius:10px;opacity:.85">
           </div>
           <button class="btn-remove-logo" id="btn-remove-logo" onclick="removeLogo()" style="display:none">✕ Remove Logo</button>
         </div>
@@ -3767,8 +3784,8 @@ function saveUsers(users) {
 // ─── Session state ────────────────────────────────────────
 let adminLoggedIn = false;
 let currentUser = null; // username of logged-in user
-const CMS_KEY   = 'glassio_cms_v1';
-const DRAFT_KEY = 'glassio_draft_v1';
+const CMS_KEY   = 'glassio_cms_v2';
+const DRAFT_KEY = 'glassio_draft_v2';
 
 // ─── Default content snapshot ───────────────────────────
 function getDefaults() {
@@ -3779,7 +3796,7 @@ function getDefaults() {
       h1: 'Inventory &amp; Operations Software<br><span class="gt">Built for the Mac</span>',
       sub: 'Glassio gives your business a single, powerful desktop workspace to track stock, manage products, run CSV workflows, and visualize your operations — all in a beautifully refined Mac-native interface.',
       cta: 'Download free for macOS', cta2: 'See Dashboard',
-      link: '#cta',
+      link: 'https://apps.apple.com/us/app/glassio/id6756553942?mt=12',
       macbadge: 'macOS 14 Sonoma or later\u00a0·\u00a0Free to download\u00a0·\u00a0No subscription required'
     },
     about: {
@@ -3867,7 +3884,7 @@ function getDefaults() {
       dlBtnText:      'Download'
     },
     media: { heroImg: '', aboutImg: '', videoUrl: '' },
-    applink: { storeUrl: '#', directUrl: '#', dlSmall: 'Download free for', dlLarge: 'macOS' },
+    applink: { storeUrl: 'https://apps.apple.com/us/app/glassio/id6756553942?mt=12', directUrl: 'https://apps.apple.com/us/app/glassio/id6756553942?mt=12', dlSmall: 'Download free for', dlLarge: 'macOS' },
     footer: {
       tag: 'The premium Mac desktop application for inventory management, CSV workflows, and operational clarity.',
       copy: '© 2026 Glassio. All rights reserved. Built with precision for Mac.'
@@ -3881,6 +3898,25 @@ let _cmsMem = null;
 // ─── Load / save ────────────────────────────────────────
 function loadCMS() {
   try {
+    // ── Migrate v1 → v2: carry all content but clear stale logo.url ──────────
+    try {
+      const v1raw = localStorage.getItem('glassio_cms_v1');
+      if (v1raw && !localStorage.getItem(CMS_KEY)) {
+        const v1 = JSON.parse(v1raw);
+        const appStoreUrl = 'https://apps.apple.com/us/app/glassio/id6756553942?mt=12';
+        if (v1 && v1.logo) v1.logo.url = ''; // clear old transparent/stale logo
+        if (v1 && v1.applink) {
+          if (!v1.applink.storeUrl  || v1.applink.storeUrl  === '#') v1.applink.storeUrl  = appStoreUrl;
+          if (!v1.applink.directUrl || v1.applink.directUrl === '#') v1.applink.directUrl = appStoreUrl;
+        }
+        if (v1 && v1.hero && (!v1.hero.link || v1.hero.link === '#cta' || v1.hero.link === '#')) {
+          v1.hero.link = appStoreUrl;
+        }
+        localStorage.setItem(CMS_KEY, JSON.stringify(v1));
+        localStorage.removeItem('glassio_cms_v1');
+      }
+    } catch(e) {}
+
     // Priority: in-memory (most recent save this session) → localStorage → sessionStorage → baked → defaults
     const base = window.__CMS_BAKED__
       ? Object.assign(getDefaults(), JSON.parse(JSON.stringify(window.__CMS_BAKED__)))
@@ -3890,10 +3926,21 @@ function loadCMS() {
     try { raw = localStorage.getItem(CMS_KEY); } catch(e) {}
     if (!raw) { try { raw = sessionStorage.getItem(CMS_KEY); } catch(e) {} }
     if (!raw) return base;
-    return Object.assign(base, JSON.parse(raw));
+    return normalizeCMS(Object.assign(base, JSON.parse(raw)));
   } catch(e) {
     return window.__CMS_BAKED__ ? Object.assign(getDefaults(), window.__CMS_BAKED__) : getDefaults();
   }
+}
+
+// ─── Normalize stale placeholder values ─────────────────
+function normalizeCMS(d) {
+  const APP_STORE = 'https://apps.apple.com/us/app/glassio/id6756553942?mt=12';
+  if (!d.applink) d.applink = {};
+  if (!d.applink.storeUrl  || d.applink.storeUrl  === '#') d.applink.storeUrl  = APP_STORE;
+  if (!d.applink.directUrl || d.applink.directUrl === '#') d.applink.directUrl = APP_STORE;
+  if (!d.hero) d.hero = {};
+  if (!d.hero.link || d.hero.link === '#' || d.hero.link === '#cta') d.hero.link = APP_STORE;
+  return d;
 }
 function saveCMS(data) {
   _cmsMem = JSON.parse(JSON.stringify(data)); // always save to memory
@@ -3993,33 +4040,21 @@ function applyCMS(d) {
   const ftImg      = document.getElementById('footer-logo-img');
 
   if (d.logo.url) {
-    // ── Show custom image; hide letter-box and brand text ──
+    // ── Show custom image; hide default icon but keep brand text ──
     if (navImg) { navImg.src = d.logo.url; navImg.style.display = 'block'; }
     if (ftImg)  { ftImg.src  = d.logo.url; ftImg.style.display  = 'block'; }
     if (navBox) navBox.style.display = 'none';
     if (ftBox)  ftBox.style.display  = 'none';
-    if (navLogoTxt) navLogoTxt.style.display = 'none';
-    if (ftLogoTxt)  ftLogoTxt.style.display  = 'none';
-    // Also reset any legacy background-image still on logo-boxes
-    document.querySelectorAll('.logo-box').forEach(box => {
-      box.style.backgroundImage = '';
-      box.style.backgroundSize  = '';
-      box.style.backgroundPosition = '';
-    });
-  } else {
-    // ── No custom image: show letter-box + brand text ──────
-    if (navImg) { navImg.style.display = 'none'; navImg.src = ''; }
-    if (ftImg)  { ftImg.style.display  = 'none'; ftImg.src  = ''; }
-    if (navBox) { navBox.style.display = ''; navBox.textContent = firstLetter; }
-    if (ftBox)  { ftBox.style.display  = ''; ftBox.textContent  = firstLetter; }
     if (navLogoTxt) { navLogoTxt.style.display = ''; navLogoTxt.textContent = brandText; }
     if (ftLogoTxt)  { ftLogoTxt.style.display  = ''; ftLogoTxt.textContent  = brandText; }
-    // Clear any legacy background-image
-    document.querySelectorAll('.logo-box').forEach(box => {
-      box.style.backgroundImage = '';
-      box.style.backgroundSize  = '';
-      box.style.backgroundPosition = '';
-    });
+  } else {
+    // ── No custom image: show default icon + brand text ──────
+    if (navImg) { navImg.style.display = 'none'; navImg.src = ''; }
+    if (ftImg)  { ftImg.style.display  = 'none'; ftImg.src  = ''; }
+    if (navBox) navBox.style.display = '';
+    if (ftBox)  ftBox.style.display  = '';
+    if (navLogoTxt) { navLogoTxt.style.display = ''; navLogoTxt.textContent = brandText; }
+    if (ftLogoTxt)  { ftLogoTxt.style.display  = ''; ftLogoTxt.textContent  = brandText; }
   }
   // Nav tagline (stored for future use — no visible element yet, value preserved)
   // (site element can be added later; value is saved/loaded correctly)
@@ -4109,14 +4144,15 @@ function applyCMS(d) {
   if (cH2) cH2.innerHTML = d.cta.h2;
   const cP = document.querySelector('.cta-in > p');
   if (cP) cP.textContent = d.cta.p;
-  // App links - update all download hrefs
-  if (d.applink.storeUrl && d.applink.storeUrl !== '#') {
-    document.querySelectorAll('.mac-dl-btn').forEach(el => {
-      el.href = d.applink.storeUrl;
-      el.target = '_blank';
-      el.rel = 'noopener noreferrer';
-    });
-  }
+  // App links - update ALL download hrefs (nav, mobile, hero, pricing, CTA)
+  const dlUrl = (d.applink.storeUrl && d.applink.storeUrl !== '#')
+    ? d.applink.storeUrl
+    : 'https://apps.apple.com/us/app/glassio/id6756553942?mt=12';
+  document.querySelectorAll('.dl-btn, .mac-dl-btn').forEach(el => {
+    el.href = dlUrl;
+    el.target = '_blank';
+    el.rel = 'noopener noreferrer';
+  });
   const dlSmalls = document.querySelectorAll('.mac-dl-text small');
   const dlLarges = document.querySelectorAll('.mac-dl-text strong');
   dlSmalls.forEach(el => el.textContent = d.applink.dlSmall);
@@ -4986,19 +5022,41 @@ function removeZipFile(i) {
   showToast('ZIP file removed. Click Apply This App to save the change.');
 }
 
-// ─── Image upload handler ────────────────────────────────
+// ─── Image upload handler (with canvas resize) ───────────
 function handleImgUpload(input, targetInputId, previewId) {
   const file = input.files[0];
   if (!file) return;
   const reader = new FileReader();
   reader.onload = e => {
-    const url = e.target.result;
-    const inp = document.getElementById(targetInputId);
-    if (inp) inp.value = url;
-    const prev = document.getElementById(previewId);
-    if (prev) { prev.src = url; prev.style.display = 'block'; }
-    if (targetInputId === 'e-logo-url') updateLogoPreview();
-    showToast('Image loaded. Click Save & Apply to update the site.');
+    const isLogo = targetInputId === 'e-logo-url';
+    const MAX_W = isLogo ? 400 : 1200;
+    const MAX_H = isLogo ? 200 : 900;
+    const img = new Image();
+    img.onload = () => {
+      let w = img.naturalWidth;
+      let h = img.naturalHeight;
+      // Scale down proportionally, never upscale
+      const scale = Math.min(1, MAX_W / w, MAX_H / h);
+      w = Math.round(w * scale);
+      h = Math.round(h * scale);
+      const canvas = document.createElement('canvas');
+      canvas.width  = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      // Transparent background so PNGs stay transparent
+      ctx.clearRect(0, 0, w, h);
+      ctx.drawImage(img, 0, 0, w, h);
+      const mime = file.type === 'image/png' ? 'image/png' : 'image/webp';
+      const quality = mime === 'image/png' ? undefined : 0.92;
+      const url = canvas.toDataURL(mime, quality);
+      const inp = document.getElementById(targetInputId);
+      if (inp) inp.value = url;
+      const prev = document.getElementById(previewId);
+      if (prev) { prev.src = url; prev.style.display = 'block'; }
+      if (isLogo) updateLogoPreview();
+      showToast('Image loaded. Click Save & Apply to update the site.');
+    };
+    img.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
@@ -5016,11 +5074,9 @@ function updateLogoPreview() {
     fallback.style.display = 'none';
     removeBtn.style.display = 'inline-flex';
   } else {
-    const brandName = (document.getElementById('e-logo-text') || {}).value || 'Glassio';
     img.src = '';
     img.style.display = 'none';
-    fallback.textContent = 'No logo selected — using text logo (' + brandName + ')';
-    fallback.style.display = 'block';
+    fallback.style.display = 'block'; // shows default glassio_icon.png
     removeBtn.style.display = 'none';
   }
 }
@@ -5048,22 +5104,16 @@ function removeLogo() {
   const ftImg  = document.getElementById('footer-logo-img');
   if (navImg) { navImg.style.display = 'none'; navImg.src = ''; }
   if (ftImg)  { ftImg.style.display  = 'none'; ftImg.src  = ''; }
-  // Restore letter-box + brand text
+  // Restore default icon + brand text
   const navBox = document.getElementById('nav-logo-box');
   const ftBox  = document.getElementById('footer-logo-box');
-  if (navBox) { navBox.style.display = ''; navBox.textContent = firstLetter; }
-  if (ftBox)  { ftBox.style.display  = ''; ftBox.textContent  = firstLetter; }
+  if (navBox) navBox.style.display = '';
+  if (ftBox)  ftBox.style.display  = '';
   const navTxt = document.getElementById('nav-logo-text');
   const ftTxt  = document.getElementById('footer-logo-text');
   if (navTxt) { navTxt.style.display = ''; navTxt.textContent = brandName; }
   if (ftTxt)  { ftTxt.style.display  = ''; ftTxt.textContent  = brandName; }
-  // Clear any legacy background-image
-  document.querySelectorAll('.logo-box').forEach(box => {
-    box.style.backgroundImage = '';
-    box.style.backgroundSize  = '';
-    box.style.backgroundPosition = '';
-  });
-  showToast('Logo removed — reverted to text-only branding.');
+  showToast('Custom logo removed — reverted to default icon.');
 }
 
 // ─── Video preview ───────────────────────────────────────
