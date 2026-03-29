@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Use — Glassio</title>
+<meta name="description" content="Terms of Use for Glassio — the Mac desktop application for inventory management and operational clarity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  background:#060a0e;
+  color:#dde4ed;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+
+:root{
+  --bg:      #060a0e;
+  --bg2:     #080d12;
+  --bg3:     #0b1118;
+  --glass:   rgba(255,255,255,0.04);
+  --glassH:  rgba(255,255,255,0.07);
+  --border:  rgba(255,255,255,0.08);
+  --borderB: rgba(255,255,255,0.15);
+  --t1: #f0f4f8;
+  --t2: #8a9ab0;
+  --t3: #3d5068;
+  --teal:  #00d4aa;
+  --teal2: #00b8d9;
+  --r:  16px;
+}
+
+/* ── Top bar ── */
+.pp-topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(6,10,14,0.92);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;
+}
+.pp-back-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--glass);
+  border:1px solid var(--borderB);
+  color:var(--t1);
+  padding:9px 18px;border-radius:50px;
+  font-size:.84rem;font-weight:500;
+  cursor:pointer;transition:all .25s;
+  text-decoration:none;
+}
+.pp-back-btn:hover{background:var(--glassH);transform:translateY(-1px)}
+.pp-back-btn svg{flex-shrink:0}
+.pp-topbar-logo{
+  display:flex;align-items:center;gap:9px;
+  font-size:1.1rem;font-weight:800;letter-spacing:-.03em;
+}
+.pp-topbar-logo img{
+  width:28px;height:28px;border-radius:7px;object-fit:contain;
+}
+.pp-logo-name{
+  background:linear-gradient(135deg,#fff 0%,#00d4aa 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* ── Page wrapper ── */
+.pp-wrap{
+  max-width:760px;
+  margin:0 auto;
+  padding:60px 24px 100px;
+}
+
+/* ── Header ── */
+.pp-header{margin-bottom:48px}
+.pp-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(0,212,170,0.08);
+  border:1px solid rgba(0,212,170,0.2);
+  color:#5eead4;
+  font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 13px;border-radius:50px;
+  margin-bottom:20px;
+}
+.pp-title{
+  font-size:clamp(2rem,5vw,3rem);
+  font-weight:800;letter-spacing:-.04em;
+  color:var(--t1);
+  line-height:1.1;
+  margin-bottom:16px;
+}
+.pp-title span{
+  background:linear-gradient(120deg,#f0f4f8 0%,#00d4aa 45%,#00b8d9 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.pp-meta{
+  font-size:.82rem;color:var(--t2);
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  margin-top:12px;
+}
+.pp-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--t3)}
+
+/* ── Divider ── */
+.pp-divider{
+  height:1px;
+  background:var(--border);
+  margin:48px 0;
+}
+
+/* ── Sections ── */
+.pp-section{margin-bottom:44px}
+.pp-section-num{
+  font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:8px;
+}
+.pp-section h2{
+  font-size:1.2rem;font-weight:700;letter-spacing:-.02em;
+  color:var(--t1);margin-bottom:14px;
+}
+.pp-section p{
+  font-size:.94rem;color:var(--t2);line-height:1.8;margin-bottom:12px;
+}
+.pp-section p:last-child{margin-bottom:0}
+.pp-section ul{
+  list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:8px;
+}
+.pp-section ul li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:.93rem;color:var(--t2);line-height:1.7;
+}
+.pp-section ul li::before{
+  content:'';
+  flex-shrink:0;
+  width:6px;height:6px;border-radius:50%;
+  background:var(--teal);margin-top:.55em;
+}
+
+/* ── Highlight card ── */
+.pp-card{
+  background:rgba(0,212,170,0.05);
+  border:1px solid rgba(0,212,170,0.15);
+  border-radius:var(--r);
+  padding:22px 24px;
+  margin:20px 0;
+}
+.pp-card p{color:var(--t1) !important;font-size:.92rem !important;}
+.pp-card strong{color:var(--teal)}
+
+/* ── Warning card ── */
+.pp-warn{
+  background:rgba(255,200,100,0.05);
+  border:1px solid rgba(255,200,100,0.15);
+  border-radius:var(--r);
+  padding:22px 24px;
+  margin:20px 0;
+}
+.pp-warn p{font-size:.92rem !important;color:var(--t1) !important;}
+.pp-warn strong{color:#f0b429}
+
+/* ── Contact box ── */
+.pp-contact{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:28px;
+  margin-top:20px;
+}
+.pp-contact p{font-size:.93rem;color:var(--t2);margin-bottom:8px}
+.pp-contact a{color:var(--teal);font-weight:500}
+.pp-contact a:hover{text-decoration:underline}
+
+/* ── Footer ── */
+.pp-footer{
+  border-top:1px solid var(--border);
+  background:var(--bg2);
+  padding:28px 24px;
+  text-align:center;
+  font-size:.76rem;color:var(--t3);
+  margin-top:80px;
+}
+.pp-footer a{color:var(--t2);transition:color .2s}
+.pp-footer a:hover{color:var(--t1)}
+
+/* ── Mobile ── */
+@media(max-width:600px){
+  .pp-wrap{padding:40px 18px 80px}
+  .pp-topbar{padding:12px 18px}
+  .pp-back-btn{padding:8px 14px;font-size:.8rem}
+  .pp-title{font-size:1.8rem}
+  .pp-section h2{font-size:1.1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="pp-topbar">
+  <a href="./index.html" class="pp-back-btn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Main Site
+  </a>
+  <div class="pp-topbar-logo">
+    <img src="Assets/glassio_icon.png" alt="Glassio">
+    <span class="pp-logo-name">Glassio</span>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="pp-wrap">
+
+  <!-- Header -->
+  <div class="pp-header">
+    <div class="pp-pill">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Legal
+    </div>
+    <h1 class="pp-title">Terms <span>of Use</span></h1>
+    <div class="pp-meta">
+      <span>Glassio</span>
+      <div class="pp-meta-dot"></div>
+      <span>Effective Date: January 1, 2025</span>
+      <div class="pp-meta-dot"></div>
+      <span>Last updated: March 2026</span>
+    </div>
+  </div>
+
+  <div class="pp-divider"></div>
+
+  <!-- 1. Introduction -->
+  <div class="pp-section">
+    <div class="pp-section-num">01 — Introduction &amp; Agreement</div>
+    <h2>Agreement to These Terms</h2>
+    <p>Welcome to Glassio. These Terms of Use ("Terms") govern your access to and use of the Glassio desktop application ("the App") and the Glassio website at glassioapp.com ("the Site"), collectively referred to as the "Service."</p>
+    <p>By downloading, installing, or using Glassio in any way, you agree to be bound by these Terms. If you do not agree with any part of these Terms, you must discontinue use of the Service immediately.</p>
+    <div class="pp-card">
+      <p><strong>Summary:</strong> Using Glassio means you accept these Terms. They are written to be fair and transparent. Please read them — they protect both you and us.</p>
+    </div>
+  </div>
+
+  <!-- 2. Use of the Software -->
+  <div class="pp-section">
+    <div class="pp-section-num">02 — Use of the Software</div>
+    <h2>Permitted Use</h2>
+    <p>Glassio is a professional Mac desktop application for inventory management, CSV workflows, and business operations. You may use the App for lawful business or personal purposes in accordance with these Terms.</p>
+    <p>To use Glassio, you must:</p>
+    <ul>
+      <li>Be at least 18 years of age, or have parental/guardian consent</li>
+      <li>Have a compatible Mac running macOS 15 Sequoia or later</li>
+      <li>Download the App through the official Mac App Store</li>
+      <li>Use the App only for lawful purposes and in compliance with all applicable laws</li>
+    </ul>
+  </div>
+
+  <!-- 3. User Responsibilities -->
+  <div class="pp-section">
+    <div class="pp-section-num">03 — User Responsibilities</div>
+    <h2>Your Responsibilities</h2>
+    <p>As a user of Glassio, you are responsible for:</p>
+    <ul>
+      <li>Maintaining the security of your Mac device and any credentials used to access it</li>
+      <li>Ensuring the accuracy of data you enter, import, or manage within the App</li>
+      <li>Backing up your local data regularly using macOS Time Machine or another backup method</li>
+      <li>Using the App in a manner that does not violate any applicable laws or third-party rights</li>
+      <li>Any consequences resulting from the loss, corruption, or misuse of your locally stored data</li>
+    </ul>
+    <p>Because Glassio stores all data locally on your device, you assume full responsibility for the management, backup, and security of that data.</p>
+  </div>
+
+  <!-- 4. License -->
+  <div class="pp-section">
+    <div class="pp-section-num">04 — License</div>
+    <h2>License Grant</h2>
+    <p>Subject to your compliance with these Terms, Glassio grants you a limited, non-exclusive, non-transferable, revocable license to:</p>
+    <ul>
+      <li>Download and install the App on Mac devices that you own or control</li>
+      <li>Use the App solely for your personal or internal business purposes</li>
+      <li>Access and use the Site for informational purposes</li>
+    </ul>
+    <p>This license does not include any right to sublicense, resell, or distribute the App or its components. All rights not expressly granted are reserved by Glassio.</p>
+    <p>The App is licensed, not sold. Your purchase or free download grants you the right to use the App under these Terms, not ownership of the software itself.</p>
+  </div>
+
+  <!-- 5. Restrictions -->
+  <div class="pp-section">
+    <div class="pp-section-num">05 — Restrictions</div>
+    <h2>What You May Not Do</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>Reverse engineer, decompile, disassemble, or attempt to derive the source code of the App</li>
+      <li>Modify, adapt, translate, or create derivative works based on the App or Site</li>
+      <li>Remove, alter, or obscure any proprietary notices, labels, or branding within the App</li>
+      <li>Use the App to develop competing products or services</li>
+      <li>Rent, lease, lend, sell, sublicense, or otherwise transfer the App to any third party</li>
+      <li>Use the App for any unlawful purpose or in violation of any applicable regulations</li>
+      <li>Attempt to gain unauthorized access to any systems or networks associated with Glassio</li>
+      <li>Use automated tools, bots, or scrapers to access or extract data from the Site</li>
+    </ul>
+    <div class="pp-warn">
+      <p><strong>Violation of these restrictions</strong> may result in immediate termination of your license and legal action where applicable.</p>
+    </div>
+  </div>
+
+  <!-- 6. Data Responsibility -->
+  <div class="pp-section">
+    <div class="pp-section-num">06 — Data Responsibility</div>
+    <h2>Your Data, Your Responsibility</h2>
+    <p>Glassio is a local-first application. All inventory records, CSV data, product entries, and operational information you create or import are stored exclusively on your local device.</p>
+    <ul>
+      <li>Glassio does not back up, sync, or transmit your app data to any external server</li>
+      <li>You are solely responsible for the backup, integrity, and security of your local data</li>
+      <li>Glassio is not liable for any data loss resulting from device failure, accidental deletion, software errors, or any other cause</li>
+      <li>It is strongly recommended that you maintain regular backups using macOS Time Machine or an equivalent solution</li>
+    </ul>
+    <div class="pp-card">
+      <p><strong>Your data belongs to you.</strong> Glassio has no access to your inventory or business data. This is intentional — local-first means you are always in control.</p>
+    </div>
+  </div>
+
+  <!-- 7. No Warranty -->
+  <div class="pp-section">
+    <div class="pp-section-num">07 — No Warranty</div>
+    <h2>Disclaimer of Warranties</h2>
+    <p>The Glassio App and Site are provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, either express or implied.</p>
+    <p>To the fullest extent permitted by applicable law, Glassio disclaims all warranties including, but not limited to:</p>
+    <ul>
+      <li>Implied warranties of merchantability, fitness for a particular purpose, and non-infringement</li>
+      <li>Any warranty that the App will be uninterrupted, error-free, or free of viruses or other harmful components</li>
+      <li>Any warranty regarding the accuracy, reliability, or completeness of any content within the App or Site</li>
+    </ul>
+    <p>You use Glassio at your own risk. We do not warrant that the App will meet your specific requirements or that any defects will be corrected in a particular timeframe.</p>
+  </div>
+
+  <!-- 8. Limitation of Liability -->
+  <div class="pp-section">
+    <div class="pp-section-num">08 — Limitation of Liability</div>
+    <h2>Limitation of Liability</h2>
+    <p>To the maximum extent permitted by applicable law, Glassio and its developers, officers, and affiliates shall not be liable for any:</p>
+    <ul>
+      <li>Indirect, incidental, special, consequential, or punitive damages</li>
+      <li>Loss of profits, revenue, data, business opportunities, or goodwill</li>
+      <li>Damages arising from your reliance on the App for business-critical decisions</li>
+      <li>Data loss, corruption, or unauthorized access to your local device or files</li>
+      <li>Interruptions or errors in the App's functionality</li>
+    </ul>
+    <p>In jurisdictions where limitation of liability for consequential or incidental damages is not permitted, our liability is limited to the maximum extent allowed by law.</p>
+    <div class="pp-warn">
+      <p><strong>In no event</strong> shall Glassio's total liability to you exceed the amount you paid for the App in the twelve (12) months preceding the claim. If you obtained the App for free, our liability is limited to $0.</p>
+    </div>
+  </div>
+
+  <!-- 9. Updates & Changes -->
+  <div class="pp-section">
+    <div class="pp-section-num">09 — Updates &amp; Changes</div>
+    <h2>Changes to the App and Terms</h2>
+    <p>Glassio reserves the right to modify, update, or discontinue the App or any part of the Service at any time, with or without notice. This includes changes to features, pricing, and availability.</p>
+    <p>We may update these Terms from time to time. When we do:</p>
+    <ul>
+      <li>The "Last updated" date at the top of this page will be revised</li>
+      <li>Continued use of the App after changes are posted constitutes your acceptance of the updated Terms</li>
+      <li>If we make material changes, we will make reasonable efforts to notify users</li>
+    </ul>
+    <p>We encourage you to review these Terms periodically to stay informed of any updates.</p>
+  </div>
+
+  <!-- 10. Termination -->
+  <div class="pp-section">
+    <div class="pp-section-num">10 — Termination</div>
+    <h2>Termination of Use</h2>
+    <p>Your right to use Glassio may be terminated in the following circumstances:</p>
+    <ul>
+      <li><strong>By you</strong> — You may stop using the App at any time by uninstalling it from your device. No formal cancellation is required unless you have an active subscription.</li>
+      <li><strong>By us</strong> — Glassio reserves the right to suspend or terminate your access to the Service if you violate these Terms, engage in abusive behavior, or use the App in an unlawful manner.</li>
+      <li><strong>App Store</strong> — Apple may also terminate your access to the App in accordance with the Mac App Store terms and conditions.</li>
+    </ul>
+    <p>Upon termination, your license to use the App immediately ends. Sections of these Terms that by their nature should survive termination (including limitation of liability, disclaimers, and contact provisions) will continue to apply.</p>
+  </div>
+
+  <!-- 11. Governing Law -->
+  <div class="pp-section">
+    <div class="pp-section-num">11 — Governing Law</div>
+    <h2>Governing Law</h2>
+    <p>These Terms shall be governed by and construed in accordance with applicable law. Any disputes arising from or relating to these Terms or the use of Glassio shall be resolved through good-faith negotiation first. If unresolved, disputes shall be handled through the appropriate legal channels in the applicable jurisdiction.</p>
+    <p>If any provision of these Terms is found to be unenforceable, the remaining provisions will continue in full force and effect.</p>
+  </div>
+
+  <!-- 12. Contact -->
+  <div class="pp-section">
+    <div class="pp-section-num">12 — Contact</div>
+    <h2>Contact Us</h2>
+    <p>If you have questions about these Terms of Use, please reach out:</p>
+    <div class="pp-contact">
+      <p><strong style="color:var(--t1)">Glassio</strong></p>
+      <p>Website: <a href="./index.html">glassioapp.com</a></p>
+      <p>Mac App Store: <a href="https://apps.apple.com/us/app/glassio/id6756553942?mt=12" target="_blank" rel="noopener noreferrer">Glassio on the App Store</a></p>
+      <p>Privacy Policy: <a href="./privacy.html" target="_blank" rel="noopener noreferrer">View Privacy Policy</a></p>
+      <p style="margin-top:12px;font-size:.82rem;color:var(--t3)">We aim to respond to all legal inquiries within 5 business days.</p>
+    </div>
+  </div>
+
+  <div class="pp-divider"></div>
+
+  <!-- Bottom back button -->
+  <div style="text-align:center;padding-top:8px">
+    <a href="./index.html" class="pp-back-btn" style="display:inline-flex">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Main Site
+    </a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="pp-footer">
+  <p>© 2026 Glassio. All rights reserved. &nbsp;·&nbsp; <a href="./index.html">Main Site</a> &nbsp;·&nbsp; <a href="./privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> &nbsp;·&nbsp; Terms of Use</p>
+</div>
+
+</body>
+</html>

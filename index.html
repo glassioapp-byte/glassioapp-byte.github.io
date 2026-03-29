@@ -2166,6 +2166,8 @@ img,video,iframe,svg{max-width:100%;height:auto}
   <a href="#pricing" onclick="closeMenu()">Pricing</a>
   <a href="#faq" onclick="closeMenu()">FAQ</a>
   <a href="#contact" onclick="closeMenu();openContact(event)">Contact</a>
+  <a href="./privacy.html" target="_blank" rel="noopener noreferrer" onclick="closeMenu()" style="font-size:1rem;color:var(--t2)">Privacy Policy</a>
+  <a href="./terms.html" target="_blank" rel="noopener noreferrer" onclick="closeMenu()" style="font-size:1rem;color:var(--t2)">Terms of Use</a>
   <a href="#cta" class="btn-p dl-btn" target="_blank" rel="noopener noreferrer" onclick="closeMenu();trackDownload(event)">Download for Mac</a>
 </div>
 
@@ -2978,7 +2980,7 @@ img,video,iframe,svg{max-width:100%;height:auto}
         </div>
         <div class="tbadge">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          macOS 14+ Native
+          <span id="mac-native-badge">macOS 15+ Native</span>
         </div>
         <div class="tbadge">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
@@ -3036,10 +3038,10 @@ img,video,iframe,svg{max-width:100%;height:auto}
       <div class="f-col">
         <h4>Legal</h4>
         <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Data &amp; Security</a></li>
-          <li><a href="#">Licenses</a></li>
+          <li><a href="./privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+          <li><a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
+          <li><a href="./privacy.html#data-responsibility" target="_blank" rel="noopener noreferrer">Data &amp; Security</a></li>
+          <li><a href="./terms.html#licenses" target="_blank" rel="noopener noreferrer">Licenses</a></li>
         </ul>
         <div style="margin-top:18px">
           <a href="#cta" class="btn-p dl-btn" style="font-size:.8rem;padding:9px 18px;border-radius:10px" target="_blank" rel="noopener noreferrer" onclick="trackDownload(event)">
@@ -3053,7 +3055,7 @@ img,video,iframe,svg{max-width:100%;height:auto}
       <p>© 2026 Glassio. All rights reserved. Built with precision for Mac.</p>
       <div class="footer-bot-links">
         <button class="admin-portal-link" onclick="openAdmin()">Admin Login</button>
-        <a href="#">Privacy</a><a href="#">Terms</a><a href="#contact" onclick="openContact(event)">Contact</a>
+        <a href="./privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a><a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms of Use</a><a href="#contact" onclick="openContact(event)">Contact</a>
       </div>
     </div>
   </div>
@@ -3227,7 +3229,12 @@ img,video,iframe,svg{max-width:100%;height:auto}
         </div>
         <div class="ad-form-group">
           <label class="ad-label">Small Badge Below Buttons</label>
-          <input class="ad-input" id="e-hero-macbadge" placeholder="macOS 14 Sonoma or later · Free to download...">
+          <input class="ad-input" id="e-hero-macbadge" placeholder="macOS 15 Sequoia or later · Free to download...">
+        </div>
+        <div class="ad-form-group">
+          <label class="ad-label">Native Badge (trust bar)</label>
+          <div class="ad-hint">Updates the "macOS 15+ Native" chip in the trust badges row below the download button.</div>
+          <input class="ad-input" id="e-hero-native-badge" placeholder="macOS 15+ Native">
         </div>
       </div>
 
@@ -3792,12 +3799,13 @@ function getDefaults() {
   return {
     logo: { text: 'Glassio', url: '', navTagline: 'Mac Desktop Inventory Software' },
     hero: {
-      badge: 'Now available — macOS 14+',
+      badge: 'Now available — macOS 15+',
       h1: 'Inventory &amp; Operations Software<br><span class="gt">Built for the Mac</span>',
       sub: 'Glassio gives your business a single, powerful desktop workspace to track stock, manage products, run CSV workflows, and visualize your operations — all in a beautifully refined Mac-native interface.',
       cta: 'Download free for macOS', cta2: 'See Dashboard',
       link: 'https://apps.apple.com/us/app/glassio/id6756553942?mt=12',
-      macbadge: 'macOS 14 Sonoma or later\u00a0·\u00a0Free to download\u00a0·\u00a0No subscription required'
+      macbadge: 'macOS 15 Sequoia or later\u00a0·\u00a0Free to download\u00a0·\u00a0No subscription required',
+      nativeBadge: 'macOS 15+ Native'
     },
     about: {
       label: 'What Is Glassio',
@@ -4087,6 +4095,8 @@ function applyCMS(d) {
   if (hSub) hSub.textContent = d.hero.sub;
   const macBadge = document.querySelector('.mac-badge');
   if (macBadge) { const t = macBadge.querySelector('svg'); macBadge.innerHTML = ''; if(t) macBadge.appendChild(t); macBadge.append(' ' + d.hero.macbadge); }
+  const nativeBadgeEl = document.getElementById('mac-native-badge');
+  if (nativeBadgeEl && d.hero.nativeBadge) nativeBadgeEl.textContent = d.hero.nativeBadge;
   // Hero secondary CTA ("See Dashboard") text
   const heroCta2El = document.querySelector('a.btn-s');
   if (heroCta2El && d.hero.cta2) {
@@ -4372,6 +4382,7 @@ function populateAdminForms() {
   setVal('e-hero-cta2', d.hero.cta2);
   setVal('e-hero-link', d.hero.link);
   setVal('e-hero-macbadge', d.hero.macbadge);
+  setVal('e-hero-native-badge', d.hero.nativeBadge);
   // About
   setVal('e-about-label', d.about.label);
   setVal('e-about-h2', d.about.h2);
@@ -4502,6 +4513,7 @@ function collectFormData() {
   d.hero.cta2 = getVal('e-hero-cta2');
   d.hero.link = getVal('e-hero-link');
   d.hero.macbadge = getVal('e-hero-macbadge');
+  d.hero.nativeBadge = getVal('e-hero-native-badge');
   // About
   d.about.label = getVal('e-about-label');
   d.about.h2 = getVal('e-about-h2');
