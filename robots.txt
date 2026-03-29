@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /User only- don't upload this/
+
+Sitemap: https://glassioapp.com/sitemap.xml
