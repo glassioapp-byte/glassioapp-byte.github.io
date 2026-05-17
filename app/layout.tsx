@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import CookieBanner from '@/components/CookieBanner'
 
 export const metadata: Metadata = {
   title: 'Glassio — Premium Business Communication App',
@@ -72,6 +73,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[#080B14] text-[#f8fafc] font-sans antialiased overflow-x-hidden">
+        <CookieBanner />
         {children}
       </body>
     </html>
